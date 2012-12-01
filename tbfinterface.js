@@ -3,7 +3,7 @@
 $(document).ready(function() { 
 
 
-	$('#CtrlLoadPLayer').click(function() {};
+	$('#CtrlLoadPLayer').click(function() {});
 
 
 
