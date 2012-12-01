@@ -1,33 +1,63 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<script type="text/javascript" src="jquery.min.js"></script>
-	<script type="text/javascript" src="jquery-ui.custom.min.js"></script>
-		<script type="text/javascript" src="tbf.js"></script>
-	<link rel="stylesheet" type="text/css" href="smoothness/jquery-ui.custom.min.css">
-<title>Title of the document</title>
+<html><head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="tbfinterface.js"></script>
+<script type="text/javascript" src="tbf.js"></script>
+<link rel="stylesheet" type="text/css" href="smoothness/jquery-ui-1.9.2.custom.min.css"><title>Tumbz Fight!</title>
 
 <script type="text/javascript">
-//getPlayer(display);
-getPlayerStats(displayStats);
-
-
-function display(data)
-{
-	$("#result").html('<A HREF="' + data.profile_url + '"><IMG SRC="' + data.avatar + '">' + data.username + '</A>');
-}
-
-function displayStats(data)
-{
-	console.log(data);
-}
 </script>
-
 </head>
 
 <body>
-<div id="result">a</div>
-</body>
-
-</html> 
+<table style="width: 1000px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(239, 237, 208);"><br>
+<br>
+</td>
+</tr>
+<tr>
+<td style="background-color: rgb(105, 163, 160);"><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td></td>
+<td style="width: 365px; height: 180px;"></td>
+<td style="width: 365px;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img id="splode1" src="splode.png" alt="" style="position: absolute; left: 200px; top: 50px;">
+<img id="splode2" src="splode.png" alt="" style="position: absolute; left: 600px; top: 50px;">
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td></td>
+<td style="background: transparent url(arena1.png) no-repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; height: 360px; width: 734px;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<a id="CtrlLoadPLayer" href="">Load Player</a><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+</body></html>
