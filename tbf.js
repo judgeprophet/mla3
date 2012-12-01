@@ -32,7 +32,7 @@ function getPlayer(callback)
 		});
 }
 
-function getRndOpponent(callback)
+function getRndOpponent(callback, username)
 {
 
 //({id:"4f10296eb943a60001009ba6", 
@@ -48,20 +48,75 @@ function getRndOpponent(callback)
 // city:null})
 
 		jQuery.ajax({
-		  'url':'http://api.tum.bz/v1/users?respecting=judgeprophet&limit=100&apikey=' + TUMBZ_KEY,
+		  'url':'http://api.tum.bz/v1/users?respecting=' + username + '&limit=100&apikey=' + TUMBZ_KEY,
 		  'dataType':'jsonp'
 		}).success(function(data)
 		{
 			var ind = Math.floor(Math.random() * (data.length-1)) + 0;
-			console.log(data[ind]);
-			callback(data);
+			callback(data[ind]);
 		});
 }
 
-function getPlayerStats(username)
-//function getPlayerStats(callback, username)
+//function getPlayerStats(username)
+function getPlayerStats(callback, username)
 {
-		//var url = 'http://api.tum.bz/v1/reviews?user=' + username + '&limit=200&apikey=' + TUMBZ_KEY;
+	//var url = 'http://api.tum.bz/v1/reviews?user=' + username + '&limit=200&apikey=' + TUMBZ_KEY;
+	var url = 'http://api.tum.bz/v1/products?cat=movie&top_products_for_user=' + username + '&limit=100&apikey=' + TUMBZ_KEY;
+
+	jQuery.ajax({
+	  'url':url,
+	  'dataType':'jsonp'
+	}).success(function(data)
+	{
+
+		var Openness = 0;
+		var Conscientiousness = 0
+		var Extraversion = 0;
+		var Agreeableness = 0;
+		var Neuroticism = 0;
+		var Agressif = 0;
+
+
+		var hp =  data.length;
+		for(var i = 0; i < hp; i++)
+		{
+			var genres =  data[i].genres.split(', ');
+			for( var j = 0; j < genres.length; j++)
+			{
+				switch (genres[j])
+				{
+					case 'Drama', 'Alternative':
+						Extraversion++;
+					break;
+					case 'Comedy', 'Fantasy', 'Science Fiction':
+						Agreeableness++;
+					break;
+					case 'Crime', 'Hip Hop/Rap', 'Action', 'Thriller', 'Rock':
+						Agressif++;
+					break;
+					case 'Romance', 'Electronic':
+						Neuroticism++;
+					break;
+					case 'Foreigm', 'Soundtrack', 'Action and Adventure':
+						Openness++;
+					break;
+					case 'Family', 'French Pop', 'Dance':
+						Conscientiousness++;
+					break;
+				}
+			}
+		}
+		//console.log(Openness + ' ' + Conscientiousness + ' ' + Extraversion + ' ' + Agreeableness + ' ' + Neuroticism + ' ' + Agressif);
+		//console.log(data);
+		callback(hp, Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism, Agressif);
+	});
+}
+
+//Genre :  Comedy, Crime, Drama, Romance
+function getRdnProduct(callback, username)
+{
+
+			//var url = 'http://api.tum.bz/v1/reviews?user=' + username + '&limit=200&apikey=' + TUMBZ_KEY;
 		var url = 'http://api.tum.bz/v1/products?cat=movie&top_products_for_user=' + username + '&limit=100&apikey=' + TUMBZ_KEY;
 
 		jQuery.ajax({
@@ -69,57 +124,8 @@ function getPlayerStats(username)
 		  'dataType':'jsonp'
 		}).success(function(data)
 		{
-
-
-    var Openness = 0;
-    var Conscientiousness = 0
-    var Extraversion = 0;
-    var Agreeableness = 0;
-    var Neuroticism = 0;
-    var Agressif = 0;
-
-
-			var hp =  data.length;
-			for(var i = 0; i < hp; i++)
-			{
-						var genres =  data[i].genres.split(', ');
-						console.log(genres);
-						for( var j = 0; j < genres.length; j++)
-						{
-							switch (genres[j])
-							{
-								case 'Drama', 'Alternative':
-									Extraversion++;
-								break;
-								case 'Comedy', 'Fantasy', 'Science Fiction':
-									Agreeableness++;
-								break;
-								case 'Crime', 'Hip Hop/Rap', 'Action', 'Thriller', 'Rock':
-									Agressif++;
-								break;
-								case 'Romance', 'Electronic':
-									Neuroticism++;
-								break;
-								case 'Foreigm', 'Soundtrack', 'Action and Adventure':
-									Openness++;
-								break;
-								case 'Family', 'French Pop', 'Dance':
-									Conscientiousness++;
-								break;
-							}
-						}
-			}
-			console.log(Openness + ' ' + Conscientiousness + ' ' + Extraversion + ' ' + Agreeableness + ' ' + Neuroticism + ' ' + Agressif);
-			//console.log(data);
-			//callback(Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism, Agressif);
+			var ind = Math.floor(Math.random() * (data.length-1)) + 0;
+			callback(data[ind]);
 		});
-}
 
-//Genre :  Comedy, Crime, Drama, Romance
-
-
-function getAlternateArena()
-{
-	
- return "Opponnent";
 }
