@@ -117,7 +117,7 @@ function getRdnProduct(callback, username)
 {
 
 			//var url = 'http://api.tum.bz/v1/reviews?user=' + username + '&limit=200&apikey=' + TUMBZ_KEY;
-		var url = 'http://api.tum.bz/v1/products?cat=movie&top_products_for_user=' + username + '&limit=100&apikey=' + TUMBZ_KEY;
+		var url = 'http://api.tum.bz/v1/products?top_products_for_user=' + username + '&limit=100&apikey=' + TUMBZ_KEY;
 
 		jQuery.ajax({
 		  'url':url,

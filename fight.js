@@ -1,4 +1,4 @@
-var  = ["Double twist Back Chin...",
+var g_Quotes = ["Double twist Back Chin...",
 "Fist of Thor! (with his hammer)...",
 "Elbows in the nuts...  ohhh Cheap Shot!",
 "Finger in the eyes... Cheap Shot",
@@ -7,3 +7,30 @@ var  = ["Double twist Back Chin...",
 "Chuck Norris Did That!",
 "I saw A Jame Bond Move!",
 "I never tought of this kind of insertion"];
+
+var g_plyHp = 100;
+var g_oppHp = 100;
+
+var Attack = function (from, to)
+{
+	toHp = toHp - attackPower();
+}
+
+var attackPower = function(AttackAttribute, ShieldAttribute)
+{
+	var damage = 0;
+
+	damage = AttackAttribute - ShieldAttribute;
+
+	if (damage < 0)
+		damage = 0;
+
+	return damage;
+}
+
+var getQuote = function()
+{
+	var ind = Math.floor(Math.random() * (g_Quotes.length-1)) + 0;
+	
+	return g_Quotes[ind];
+}
