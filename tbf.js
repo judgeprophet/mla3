@@ -32,7 +32,7 @@ function getPlayer(callback)
 		});
 }
 
-function getRndOpponent(callback)
+function getRndOpponent(callback, username)
 {
 
 //({id:"4f10296eb943a60001009ba6", 
@@ -48,7 +48,7 @@ function getRndOpponent(callback)
 // city:null})
 
 		jQuery.ajax({
-		  'url':'http://api.tum.bz/v1/users?respecting=judgeprophet&limit=100&apikey=' + TUMBZ_KEY,
+		  'url':'http://api.tum.bz/v1/users?respecting=' + username + '&limit=100&apikey=' + TUMBZ_KEY,
 		  'dataType':'jsonp'
 		}).success(function(data)
 		{
@@ -81,7 +81,6 @@ function getPlayerStats(callback, username)
 		for(var i = 0; i < hp; i++)
 		{
 			var genres =  data[i].genres.split(', ');
-			console.log(genres);
 			for( var j = 0; j < genres.length; j++)
 			{
 				switch (genres[j])
@@ -109,13 +108,11 @@ function getPlayerStats(callback, username)
 		}
 		//console.log(Openness + ' ' + Conscientiousness + ' ' + Extraversion + ' ' + Agreeableness + ' ' + Neuroticism + ' ' + Agressif);
 		//console.log(data);
-		callback(Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism, Agressif);
+		callback(hp, Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism, Agressif);
 	});
 }
 
 //Genre :  Comedy, Crime, Drama, Romance
-
-
 function getRdnProduct(callback, username)
 {
 
