@@ -1,9 +1,18 @@
 
+var g_P1userName;
+var g_P2userName;
 
 $(document).ready(function() { 
 
+    LoadPlayer();
+    LoadOpponent();
 
-	$('#CtrlLoadPlayer').click( function(event) { event.preventDefault(); LoadPayer(); LoadOpponent(); });
+
+    
+
+
+//	$('#CtrlLoadPlayer').click( function(event) { event.preventDefault(); LoadPlayer(); LoadOpponent(); });
+
 	$('#CtrlSplode').click( function(event) { event.preventDefault(); SplodBoum('#splode1'); });
 
 
@@ -23,7 +32,7 @@ $(document).ready(function() {
 });
 
 
-var LoadPayer = function ()
+var LoadPlayer = function ()
 {
 	//Get Players
 	getPlayer( gotPlayer );
@@ -35,19 +44,44 @@ var gotPlayer = function (data)
 {
 	$("#Player1Name").html( data.firstname );
 	$("#ThumbPlayer1").attr("src", data.avatar );
+	
+	g_P1userName = data.username;
+	
+    LoadPlayerMedia();
 }
 
-var LoadOpponent = function ()
+var LoadOpponent = function () 
 {
 	getRndOpponent( gotOpponent );
-
 
 }
 var gotOpponent = function (data)
 {
-console.log(data);
 	$("#Player2Name").html( data.firstname );
 	$("#ThumbPlayer2").attr("src", data.avatar );
+	g_P2userName = data.username;
+	
+	LoadOpponentMedia();
+}
+
+var LoadPlayerMedia = function ()
+{
+    getRdnProduct( GotP1Product, g_P1userName);
+}
+var GotP1Product = function (data)
+{
+    $("#MediaName1").html( data.title );
+    SplodBoum('#splode1');
+}
+
+var LoadOpponentMedia = function ()
+{
+    getRdnProduct( GotP2Product, g_P2userName);
+}
+var GotP2Product = function (data)
+{
+    $("#MediaName2").html( data.title );
+    SplodBoum('#splode2');
 }
 
 
