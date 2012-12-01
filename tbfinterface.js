@@ -3,7 +3,8 @@
 $(document).ready(function() { 
 
 
-	$('#CtrlLoadPlayer').click( function(event) { event.preventDefault(); SplodBoum(); });
+	$('#CtrlLoadPlayer').click( function(event) { event.preventDefault(); LoadPayer(); });
+	$('#CtrlSplode').click( function(event) { event.preventDefault(); SplodBoum('#splode1'); });
 
 
     //Init Splots
@@ -19,26 +20,23 @@ $(document).ready(function() {
     var SplodeLeft = (((ArenaW / 2) - $("#splode1").width() ) / 2) + ArenaX + (ArenaW / 2);
     $("#splode2").offset({left:SplodeLeft});
 
-  
- //   $('#splode1').animate({left:0}, 2000);
-
 });
 
 
-var InitAll = function ()
+var LoadPayer = function ()
 {
 
     
 
 
-	//Get PLayer
+	//Get Players
 	getPlayer( gotPlayer );
+    getRndOpponent(gotOpponent);
 
 
-
-	//GetOpponent
-
-//Get Products
+    //Get Products
+    
+    
 
 //Init Arena
 
@@ -59,11 +57,18 @@ var gotPlayer = function (data)
 console.log(data);	
 
 }
-
-
-var SplodBoum = function ()
+var gotOpponent = function (data)
 {
+	//$("#Player1").html( data.firstname );	
+    //console.log(data);	
+}
 
 
-
+var SplodBoum = function (SplotId)
+{
+    $(SplotId).animate({left: '+=20', top:'+=20', width: '-=40', height:'-=40'}, 200, SplodBoum1(SplotId) );
+}
+var SplodBoum1 = function (SplotId)
+{
+    $(SplotId).animate({left: '-=20', top:'-=20', width: '+=40', height:'+=40'}, 200 );
 }
