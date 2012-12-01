@@ -3,7 +3,7 @@
 $(document).ready(function() { 
 
 
-	$('#CtrlLoadPlayer').click( function(event) { event.preventDefault(); LoadPayer(); });
+	$('#CtrlLoadPlayer').click( function(event) { event.preventDefault(); LoadPayer(); LoadOpponent(); });
 	$('#CtrlSplode').click( function(event) { event.preventDefault(); SplodBoum('#splode1'); });
 
 
@@ -25,42 +25,29 @@ $(document).ready(function() {
 
 var LoadPayer = function ()
 {
-
-    
-
-
 	//Get Players
 	getPlayer( gotPlayer );
     getRndOpponent(gotOpponent);
 
-
     //Get Products
-    
-    
-
-//Init Arena
-
-
-
-
 }
-
-
-
-
 var gotPlayer = function (data)
 {
+	$("#Player1Name").html( data.firstname );
+	$("#ThumbPlayer1").attr("src", data.avatar );
+}
 
+var LoadOpponent = function ()
+{
+	getRndOpponent( gotOpponent );
 
-	$("#Player1").html( data.firstname );
-	
-console.log(data);	
 
 }
 var gotOpponent = function (data)
 {
-	//$("#Player1").html( data.firstname );	
-    //console.log(data);	
+console.log(data);
+	$("#Player2Name").html( data.firstname );
+	$("#ThumbPlayer2").attr("src", data.avatar );
 }
 
 
