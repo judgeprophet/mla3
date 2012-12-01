@@ -11,9 +11,17 @@ var g_Quotes = ["Double twist Back Chin...",
 var g_plyHp = 100;
 var g_oppHp = 100;
 
-var Attack = function (from, to)
+var attack = function (Type)
 {
-	toHp = toHp - attackPower();
+	if (Type.toUpperCase() = 'PLAYER')
+	{
+		g_plyHp =  g_plyHp - attackPower();	
+	}
+	else
+	{
+		g_oppHp =  g_oppHp - attackPower();
+	}
+	
 }
 
 var attackPower = function(AttackAttribute, ShieldAttribute)
