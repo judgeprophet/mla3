@@ -198,8 +198,20 @@ var GoAttack1 = function (data)
     g_HP2 = q[0];
     
     SetLife(2, g_HP2);
-    
-    setTimeout(OpponentAttack, 600);
+
+    $('#BangText2').hide();
+    $('#Bang2').hide();
+/*
+    var x =     ($(window).width()  / 2) - 200;
+    var y = 300;
+    $('#Bang1').offset( {top: y, left: x } );
+    $('#BangText1').offset( {top: y+50, left: x+100 } );
+    $('#BangText1').text(q[1]);
+    $('#BangText1').show();
+    $('#Bang1').show();
+*/
+   
+    setTimeout(OpponentAttack, 1200);
 }
 
 var ThisAttackName2;
@@ -219,6 +231,19 @@ var OpponentAttack1 = function (data)
     var q = attack(ThisAttackName2, data, g_HP1);
     g_HP1 = q[0];
     
+    $('#BangText1').hide();
+    $('#Bang1').hide();
+
+    /*
+    var x =     ($(window).width()  / 2) ;
+    var y = 300;
+    
+    $('#Bang2').offset( {top: y, left: x } );
+    $('#BangText2').offset( {top: y+50, left: x+100 } );
+    $('#BangText2').text(q[1]);
+    $('#BangText2').show();
+    $('#Bang2').show();
+    */
     SetLife(1, g_HP1);
 }
 
