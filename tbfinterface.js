@@ -1,9 +1,8 @@
-
 var g_P1userName;
 var g_P2userName;
 var ArenaX, ArenaY, ArenaW, ArenaH;
-var g_HP1 = 100;
-var g_HP2 = 100;
+var g_HP1 = 70;
+var g_HP2 = 70;
 
 $(document).ready(function() { 
 
@@ -46,10 +45,32 @@ $(document).ready(function() {
     //Init Attacks
     $("#splode2").offset({left:SplodeLeft});
     
+    SetLife(1, 100);
+    SetLife(2, 100);   
+    
     SetAttacksNames(1, null);
 //    SetAttacksNames(2, null);
     
 });
+
+var SetLife = function(PlayerNo, Life)
+{
+    var LifeBar = "#Life" + PlayerNo;
+    
+    var hp = eval('g_HP'+PlayerNo);
+
+    var w = ((ArenaW/2)-50) * hp / 100;
+    var x = (((ArenaW/2) - w) / 2) + ArenaX;
+    
+    if (PlayerNo == 2) x += (ArenaW/2);
+    
+    $(LifeBar).width(w);
+    
+    $(LifeBar).offset({top: ArenaY+300, left: x});
+
+
+
+}
 
 var SetAttacksNames = function(PlayerNo, Genres)
 {
@@ -87,8 +108,6 @@ var SetAttacksNames = function(PlayerNo, Genres)
         $(Label1).offset({top:ArenaY+ArenaH+(i*70)+10, left:x});
         $(Label2).offset({top:ArenaY+ArenaH+(i*70), left:x});
 
-        
-    
     }
 }
 
@@ -137,13 +156,10 @@ var GotP1Product = function (data)
     $("#Fighter1").offset({top:1000, left:ArenaX+30});
     $("#Fighter1").attr("src", data.img_cover);
     
-    console.log(data.genres);
     SetAttacksNames(1, data.genres.split(', ') );
 
     $("#Fighter1").animate({top:350}, 600, FigtherLinger("#Fighter1") );
-    
-    
-    
+      
     
 }
 
@@ -154,26 +170,56 @@ var LoadOpponentMedia = function ()
 var GotP2Product = function (data)
 {
     $("#MediaName2").html( data.title );
+    SplodBoum('#splode2');
     
+    $("#Fighter2").offset({top:1000, left:ArenaX+(ArenaW/2)+50});
+    $("#Fighter2").attr("src", data.img_cover);
     
     SetAttacksNames(2, data.genres.split(', ') );
 
-    SplodBoum('#splode2');
     
+    $("#Fighter2").animate({top:350}, 600, FigtherLinger("#Fighter2") );
   
     
 }
 
-var ThisAttackName;
+var ThisAttackName1;
 var GoAttack = function (TagId)
 {
-    ThisAttackName = $(TagId).text();
-    GetPlayerStats(GoAttack1, g_P1userName);
+    ThisAttackName1 = $(TagId).text();
+    getPlayerStats(GoAttack1, g_P1userName);
+    
+    SplodBoum('#splode1');
 }
 
 var GoAttack1 = function (data)
 {
-    attack(ThisAttackName, data, g_HP2);
+    var q = attack(ThisAttackName1, data, g_HP2);
+    g_HP2 = q[0];
+    
+    SetLife(2, g_HP2);
+    
+    setTimeout(OpponentAttack, 600);
+}
+
+var ThisAttackName2;
+var OpponentAttack = function()
+{
+    //Randomize this!!!
+    TagId = "#OppAttack1";
+    
+    ThisAttackName2 = $(TagId).text();
+    getPlayerStats(OpponentAttack1, g_P2userName);
+    
+    SplodBoum('#splode2');
+
+}
+var OpponentAttack1 = function (data)
+{
+    var q = attack(ThisAttackName2, data, g_HP1);
+    g_HP1 = q[0];
+    
+    SetLife(1, g_HP1);
 }
 
 
