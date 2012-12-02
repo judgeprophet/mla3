@@ -1,24 +1,22 @@
-var g_Quotes = [["Double twist Back Chin...", 10],
-["Fist of Thor! (with his hammer)...", 20],
-["Elbows in the nuts...  ohhh Cheap Shot!", 15],
-["Finger in the eyes... Cheap Shot", 3],
-["There's no way you can do that with a stick!", 5],
-["Kick! Bruce Lee style!", 10],
-["OOOOOOYYYYYYYAAAAAArrrrrhhhhh *hold breath* RELEASE!", 10],
-["Chuck Norris Did That!", 10],
-["I saw That in a James Bond Movie!", 10],
-["Dick SLAP!", 14],
-["Save me, Jeebus", 17],
-["I never tought of this kind of insertion", 20]];
+var g_Quotes = [["Double twist Back Chin...", 20],
+["Fist of Thor! (with his hammer)...", 40],
+["Elbows in the nuts...  ohhh Cheap Shot!", 30],
+["Finger in the eyes... Cheap Shot", 10],
+["There's no way you can do that with a stick!", 19],
+["Kick! Bruce Lee style!", 20],
+["OOOOOOYYYYYYYAAAAAArrrrrhhhhh *hold breath* RELEASE!", 20],
+["Chuck Norris Did That!", 20],
+["I saw That in a James Bond Movie!", 20],
+["Dick SLAP!", 30],
+["Save me, Jeebus", 35],
+["I never tought of this kind of insertion", 40]];
 
 var g_Arenas = [
 "arena1.png",
 "arena2.png"
 ];
 
-var g_BaseDamage = 10;
-var g_plyHp = 100;
-var g_oppHp = 100;
+var g_BaseDamage = 20;
 
 var attack = function (AttackType, Defences, Hp)
 {
