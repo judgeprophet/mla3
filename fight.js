@@ -8,6 +8,7 @@ var g_Quotes = [["Double twist Back Chin...", 10],
 ["Chuck Norris Did That!", 10],
 ["I saw That in a James Bond Movie!", 10],
 ["Dick SLAP!", 14],
+["Save me, Jeebus", 17],
 ["I never tought of this kind of insertion", 20]];
 
 var g_Arenas = [
